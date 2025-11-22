@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ETERNAL Client - Best Minecraft Experience</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #0a0a1a;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-image: url('images/background.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: rgba(10, 10, 26, 0.9);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(46, 204, 113, 0.2);
+            animation: slideDown 0.8s ease-out;
+        }
+        
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #2ecc71;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            animation: fadeIn 1s ease-out 0.2s both;
+        }
+        
+        .logo span {
+            color: #fff;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+            animation: fadeIn 1s ease-out 0.4s both;
+        }
+        
+        nav ul li:nth-child(1) { animation-delay: 0.4s; }
+        nav ul li:nth-child(2) { animation-delay: 0.5s; }
+        nav ul li:nth-child(3) { animation-delay: 0.6s; }
+        nav ul li:nth-child(4) { animation-delay: 0.7s; }
+        
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #2ecc71;
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            color: #2ecc71;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 180px 0 100px;
+            background: linear-gradient(135deg, rgba(10, 10, 26, 0.8) 0%, rgba(13, 26, 42, 0.8) 100%);
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 20%, rgba(46, 204, 113, 0.1) 0%, transparent 50%);
+            animation: pulse 4s infinite alternate;
+        }
+        
+        @keyframes pulse {
+            0% {
+                opacity: 0.3;
+            }
+            100% {
+                opacity: 0.7;
+            }
+        }
+        
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .hero-text {
+            flex: 1;
+            max-width: 600px;
+            animation: slideInLeft 1s ease-out 0.3s both;
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                transform: translateX(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        .hero-text h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            animation: textGlow 3s infinite alternate;
+        }
+        
+        @keyframes textGlow {
+            0% {
+                text-shadow: 0 0 5px rgba(46, 204, 113, 0.5);
+            }
+            100% {
+                text-shadow: 0 0 15px rgba(46, 204, 113, 0.8), 0 0 20px rgba(46, 204, 113, 0.6);
+            }
+        }
+        
+        .hero-text h1 span {
+            color: #2ecc71;
+        }
+        
+        .hero-text p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: #b0b0c0;
+            animation: fadeIn 1s ease-out 0.6s both;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            animation: fadeIn 1s ease-out 0.9s both;
+        }
+        
+        .btn {
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+            cursor: pointer;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn-primary {
+            background-color: #2ecc71;
+            color: #0a0a1a;
+            animation: bounceIn 1s ease-out 1.2s both;
+        }
+        
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0.3);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            70% {
+                transform: scale(0.9);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .btn-primary:hover {
+            background-color: #27ae60;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(46, 204, 113, 0.3);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: #fff;
+            border: 2px solid #2ecc71;
+            animation: bounceIn 1s ease-out 1.4s both;
+        }
+        
+        .btn-secondary:hover {
+            background-color: rgba(46, 204, 113, 0.1);
+            transform: translateY(-3px);
+        }
+        
+        .hero-image {
+            flex: 1;
+            text-align: center;
+            animation: slideInRight 1s ease-out 0.3s both;
+        }
+        
+        @keyframes slideInRight {
+            from {
+                transform: translateX(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        .hero-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+        
+        .hero-image img:hover {
+            transform: scale(1.05) rotate(1deg);
+            box-shadow: 0 25px 50px rgba(46, 204, 113, 0.2);
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+            background-color: rgba(13, 13, 34, 0.9);
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: fadeInUp 1s ease-out both;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: #b0b0c0;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background: linear-gradient(145deg, rgba(18, 18, 50, 0.8), rgba(13, 13, 34, 0.8));
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s;
+            border: 1px solid rgba(46, 204, 113, 0.1);
+            animation: fadeInUp 1s ease-out both;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(46, 204, 113, 0.05), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+        
+        .feature-card:hover::before {
+            transform: translateX(100%);
+        }
+        
+        .feature-card:nth-child(1) { animation-delay: 0.1s; }
+        .feature-card:nth-child(2) { animation-delay: 0.2s; }
+        .feature-card:nth-child(3) { animation-delay: 0.3s; }
+        .feature-card:nth-child(4) { animation-delay: 0.4s; }
+        .feature-card:nth-child(5) { animation-delay: 0.5s; }
+        .feature-card:nth-child(6) { animation-delay: 0.6s; }
+        
+        .feature-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: rgba(46, 204, 113, 0.3);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 30px;
+            transition: transform 0.3s ease;
+            animation: rotateIn 1s ease-out both;
+        }
+        
+        @keyframes rotateIn {
+            from {
+                transform: rotate(-180deg) scale(0);
+                opacity: 0;
+            }
+            to {
+                transform: rotate(0) scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .feature-card:hover .feature-icon {
+            transform: rotate(15deg) scale(1.1);
+        }
+        
+        .feature-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            transition: color 0.3s ease;
+        }
+        
+        .feature-card:hover h3 {
+            color: #2ecc71;
+        }
+        
+        .feature-card p {
+            color: #b0b0c0;
+            line-height: 1.6;
+        }
+        
+        /* Modals */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            overflow-y: auto;
+            padding: 20px;
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        .modal-content {
+            background: linear-gradient(145deg, #121232, #0d0d22);
+            border-radius: 10px;
+            padding: 40px;
+            width: 100%;
+            max-width: 800px;
+            border: 1px solid rgba(46, 204, 113, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: modalSlideIn 0.4s ease-out;
+        }
+        
+        @keyframes modalSlideIn {
+            from {
+                transform: translateY(-50px) scale(0.9);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            animation: fadeIn 0.5s ease-out 0.2s both;
+        }
+        
+        .modal-header h2 {
+            color: #2ecc71;
+            font-size: 32px;
+        }
+        
+        .close-btn {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .close-btn:hover {
+            color: #2ecc71;
+            transform: rotate(90deg);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            animation: fadeIn 0.5s ease-out 0.3s both;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #b0b0c0;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 5px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #2ecc71;
+            box-shadow: 0 0 10px rgba(46, 204, 113, 0.3);
+            transform: scale(1.02);
+        }
+        
+        .key-display {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: rgba(46, 204, 113, 0.1);
+            border-radius: 5px;
+            border: 1px solid rgba(46, 204, 113, 0.3);
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        .key-display h3 {
+            color: #2ecc71;
+            margin-bottom: 10px;
+        }
+        
+        .key-value {
+            font-family: monospace;
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            border-radius: 5px;
+            word-break: break-all;
+            animation: typewriter 1s steps(40) 0.5s both;
+        }
+        
+        @keyframes typewriter {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+        
+        .loading {
+            color: #2ecc71;
+            text-align: center;
+            margin: 10px 0;
+            display: none;
+            animation: pulse 1.5s infinite;
+        }
+        
+        .error-message {
+            color: #e74c3c;
+            text-align: center;
+            margin: 10px 0;
+            display: none;
+            animation: shake 0.5s ease-out;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+        
+        /* About Page Content */
+        .about-content {
+            line-height: 1.6;
+        }
+        
+        .about-section {
+            margin-bottom: 30px;
+            animation: fadeInUp 0.6s ease-out both;
+        }
+        
+        .about-section:nth-child(1) { animation-delay: 0.1s; }
+        .about-section:nth-child(2) { animation-delay: 0.2s; }
+        .about-section:nth-child(3) { animation-delay: 0.3s; }
+        .about-section:nth-child(4) { animation-delay: 0.4s; }
+        .about-section:nth-child(5) { animation-delay: 0.5s; }
+        
+        .about-section h3 {
+            color: #2ecc71;
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+        
+        .about-section p {
+            margin-bottom: 15px;
+            color: #b0b0c0;
+        }
+        
+        .about-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .about-feature {
+            background: rgba(46, 204, 113, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #2ecc71;
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.6s ease-out both;
+        }
+        
+        .about-feature:nth-child(1) { animation-delay: 0.3s; }
+        .about-feature:nth-child(2) { animation-delay: 0.4s; }
+        .about-feature:nth-child(3) { animation-delay: 0.5s; }
+        .about-feature:nth-child(4) { animation-delay: 0.6s; }
+        
+        .about-feature:hover {
+            transform: translateY(-5px);
+            background: rgba(46, 204, 113, 0.15);
+        }
+        
+        .about-feature h4 {
+            color: #2ecc71;
+            margin-bottom: 10px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: rgba(8, 8, 20, 0.9);
+            padding: 60px 0 30px;
+            margin-top: auto;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+            animation: fadeInUp 0.8s ease-out both;
+        }
+        
+        .footer-column:nth-child(1) { animation-delay: 0.1s; }
+        .footer-column:nth-child(2) { animation-delay: 0.2s; }
+        .footer-column:nth-child(3) { animation-delay: 0.3s; }
+        .footer-column:nth-child(4) { animation-delay: 0.4s; }
+        
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #2ecc71;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+            transition: transform 0.3s ease;
+        }
+        
+        .footer-column ul li:hover {
+            transform: translateX(5px);
+        }
+        
+        .footer-column ul li a {
+            color: #b0b0c0;
+            text-decoration: none;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #2ecc71;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #b0b0c0;
+            font-size: 14px;
+            animation: fadeIn 1s ease-out 0.5s both;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-text {
+                margin-bottom: 50px;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+            }
+            
+            nav ul li {
+                margin: 0 10px;
+            }
+            
+            .hero-text h1 {
+                font-size: 36px;
+            }
+            
+            .modal-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">ETERNAL<span>Client</span></a>
+                <nav>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#" id="about-link">About</a></li>
+                        <li><a href="#" id="login-link">Login</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Experience the <span>ETERNAL</span> Minecraft Client</h1>
+                    <p>We provide you with the best performance optimization and comfortable gaming that will give you the ultimate Minecraft experience.</p>
+                    <div class="hero-buttons">
+                        <a href="https://discord.gg/VuzWkRz7BJ" target="_blank" class="btn btn-primary">Buy now</a>
+                        <a href="https://discord.gg/VuzWkRz7BJ" target="_blank" class="btn btn-secondary">Read More</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="images/logo.png" alt="ETERNAL Client Logo" onerror="this.src='https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80'">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose ETERNAL?</h2>
+                <p>Discover the features that make our Minecraft client stand out from the rest</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>FPS Boost</h3>
+                    <p>Dramatically increase your FPS with our advanced optimization techniques. Experience buttery smooth gameplay even on lower-end systems.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Anti-Cheat Bypass</h3>
+                    <p>Advanced bypass techniques for popular anti-cheat systems. Stay undetected while enjoying enhanced gameplay features.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Precision Aim</h3>
+                    <p>Enhanced aim assistance with customizable settings. Improve your PVP performance with smart targeting systems.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👁️</div>
+                    <h3>ESP & Radar</h3>
+                    <p>See through walls with Entity ESP, player radar, and advanced visualization tools. Always know where your enemies are.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚙️</div>
+                    <h3>Performance Optimization</h3>
+                    <p>Reduce lag and improve game stability with our memory management and rendering optimizations specifically for Minecraft.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3>Easy Configuration</h3>
+                    <p>User-friendly interface with one-click optimizations and extensive customization options for advanced users.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Authorization</h2>
+                <button class="close-btn">&times;</button>
+            </div>
+            
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
+            </form>
+            
+            <div id="loading-message" class="loading" style="display: none;">Loading license data...</div>
+            <div id="error-message" class="error-message"></div>
+            <div id="key-display" class="key-display">
+                <h3>Your License Key:</h3>
+                <div id="key-value" class="key-value"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Modal -->
+    <div id="about-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>About ETERNAL Client</h2>
+                <button class="close-btn">&times;</button>
+            </div>
+            <div class="about-content">
+                <div class="about-section">
+                    <h3>What is ETERNAL Client?</h3>
+                    <p>ETERNAL Client is a premium Minecraft optimization and enhancement tool designed to give players a competitive edge while maintaining the highest level of performance and stability.</p>
+                    <p>Our client is developed by a team of experienced programmers and Minecraft enthusiasts who understand what players need to excel in both PVP and survival gameplay.</p>
+                </div>
+                
+                <div class="about-section">
+                    <h3>Our Mission</h3>
+                    <p>We strive to create the most reliable and efficient Minecraft client on the market. Our focus is on providing:</p>
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <h4>Performance</h4>
+                            <p>Maximize FPS and reduce lag for the smoothest gameplay experience</p>
+                        </div>
+                        <div class="about-feature">
+                            <h4>Security</h4>
+                            <p>Advanced anti-detection systems to keep your account safe</p>
+                        </div>
+                        <div class="about-feature">
+                            <h4>Innovation</h4>
+                            <p>Constantly updating with new features and optimizations</p>
+                        </div>
+                        <div class="about-feature">
+                            <h4>Support</h4>
+                            <p>Dedicated customer support and active community</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-section">
+                    <h3>Launcher Features</h3>
+                    <p>Our custom launcher provides a seamless experience with these key features:</p>
+                    <ul style="color: #b0b0c0; margin-left: 20px; margin-bottom: 20px;">
+                        <li>One-click installation and updates</li>
+                        <li>Automatic profile management</li>
+                        <li>Built-in configuration editor</li>
+                        <li>Performance monitoring tools</li>
+                        <li>Secure authentication system</li>
+                        <li>Regular automatic updates</li>
+                    </ul>
+                </div>
+                
+                <div class="about-section">
+                    <h3>System Requirements</h3>
+                    <p>ETERNAL Client is designed to work on a wide range of systems:</p>
+                    <ul style="color: #b0b0c0; margin-left: 20px; margin-bottom: 20px;">
+                        <li>Windows 10/11 (64-bit)</li>
+                        <li>Java 8 or higher</li>
+                        <li>4GB RAM minimum (8GB recommended)</li>
+                        <li>DirectX 11 compatible GPU</li>
+                        <li>Stable internet connection</li>
+                    </ul>
+                </div>
+                
+                <div class="about-section">
+                    <h3>Join Our Community</h3>
+                    <p>Connect with other ETERNAL Client users, get support, and stay updated with the latest news and updates.</p>
+                    <a href="https://discord.gg/VuzWkRz7BJ" target="_blank" class="btn btn-primary" style="margin-top: 15px;">Join Our Discord</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>ETERNAL Client</h3>
+                    <p>Providing the ultimate Minecraft experience with cutting-edge optimization and gameplay enhancements.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#" id="about-link-footer">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="https://discord.gg/VuzWkRz7BJ" target="_blank">Discord</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Community</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 ETERNAL Client. All rights reserved. Minecraft is a trademark of Mojang AB. This client is not affiliated with Mojang.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ============================================
+        // ============================================
+        const userDatabase = [
+            // Format: { username: "username", password: "password", key: "license-key" }
+            { username: "DefaultUser", password: "default", key: "ITISWORKING" },
+            { username: "Kotlet", password: "Haslo123", key: "KEYAUTH-UXJqGy-OlpQCM-qceIa9-R5UMjd-3tFska-LDdkIC" },
+            { username: "testuser", password: "testpass", key: "TEST-KEY-12345" },
+            { username: "Gangsa", password: "CiasnyBlazej", key: "KEYAUTH-3ziysK-VhEF2f-cSdczE-vIMwpU-RIQe3d-HjLPXL"},
+            // Add more users below this line in the same format:
+            // { username: "your_username", password: "your_password", key: "your_license_key" },
+        ];
+        // ============================================
+        // END OF USER DATABASE
+        // ============================================
+
+        // Modal functionality
+        const loginLink = document.getElementById('login-link');
+        const aboutLink = document.getElementById('about-link');
+        const aboutLinkFooter = document.getElementById('about-link-footer');
+        const loginModal = document.getElementById('login-modal');
+        const aboutModal = document.getElementById('about-modal');
+        const closeBtns = document.querySelectorAll('.close-btn');
+        const loginForm = document.getElementById('login-form');
+        const keyDisplay = document.getElementById('key-display');
+        const keyValue = document.getElementById('key-value');
+        const loadingMessage = document.getElementById('loading-message');
+        const errorMessage = document.getElementById('error-message');
+
+        // Open login modal
+        loginLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            loginModal.style.display = 'flex';
+        });
+
+        // Open about modal
+        aboutLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            aboutModal.style.display = 'flex';
+        });
+
+        // Open about modal from footer
+        aboutLinkFooter.addEventListener('click', function(e) {
+            e.preventDefault();
+            aboutModal.style.display = 'flex';
+        });
+
+        // Close modals
+        closeBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                loginModal.style.display = 'none';
+                aboutModal.style.display = 'none';
+                resetForm();
+            });
+        });
+
+        // Close modals when clicking outside
+        window.addEventListener('click', function(e) {
+            if (e.target === loginModal) {
+                loginModal.style.display = 'none';
+                resetForm();
+            }
+            if (e.target === aboutModal) {
+                aboutModal.style.display = 'none';
+            }
+        });
+
+        // Reset form function
+        function resetForm() {
+            if (loginForm) loginForm.reset();
+            if (keyDisplay) keyDisplay.style.display = 'none';
+            if (loadingMessage) loadingMessage.style.display = 'none';
+            if (errorMessage) errorMessage.style.display = 'none';
+        }
+
+        // Login form submission
+        if (loginForm) {
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+                
+                if (!username || !password) {
+                    alert('Please enter both username and password');
+                    return;
+                }
+                
+                try {
+                    console.log('Checking credentials against', userDatabase.length, 'users');
+                    
+                    // Find matching credentials
+                    let key = null;
+                    let foundUser = false;
+                    
+                    for (const user of userDatabase) {
+                        console.log(`Checking: "${user.username}" against "${username}"`);
+                        
+                        if (user.username === username) {
+                            foundUser = true;
+                            if (user.password === password) {
+                                key = user.key;
+                                break;
+                            }
+                        }
+                    }
+                    
+                    if (key) {
+                        // Display the key
+                        keyValue.textContent = key;
+                        keyDisplay.style.display = 'block';
+                        console.log(`User ${username} logged in successfully. Key: ${key}`);
+                    } else {
+                        if (foundUser) {
+                            alert('Invalid password. Please try again.');
+                        } else {
+                            alert('Username not found. Please check your credentials.');
+                        }
+                    }
+                } catch (error) {
+                    console.error('Login error:', error);
+                    alert('An error occurred during login. Please try again.');
+                }
+            });
+        }
+
+        // Ensure all Buy Now and Read More buttons redirect to Discord
+        document.addEventListener('DOMContentLoaded', function() {
+            // Fix for hero buttons
+            const buyNowBtn = document.querySelector('.hero-buttons .btn-primary');
+            const readMoreBtn = document.querySelector('.hero-buttons .btn-secondary');
+            
+            if (buyNowBtn) {
+                buyNowBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.open('https://discord.gg/VuzWkRz7BJ', '_blank');
+                });
+            }
+            
+            if (readMoreBtn) {
+                readMoreBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.open('https://discord.gg/VuzWkRz7BJ', '_blank');
+                });
+            }
+
+            // Fix for about modal Discord button
+            const aboutDiscordBtn = document.querySelector('#about-modal .btn-primary');
+            if (aboutDiscordBtn && aboutDiscordBtn.textContent.includes('Join Our Discord')) {
+                aboutDiscordBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.open('https://discord.gg/VuzWkRz7BJ', '_blank');
+                });
+            }
+
+            // Fix for footer Discord link
+            const footerDiscordLink = document.querySelector('.footer-column:nth-child(3) a[href="https://discord.gg/VuzWkRz7BJ"]');
+            if (footerDiscordLink) {
+                footerDiscordLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.open('https://discord.gg/VuzWkRz7BJ', '_blank');
+                });
+            }
+
+            // Log loaded users for debugging
+            console.log(`✅ User database loaded with ${userDatabase.length} users:`);
+            userDatabase.forEach(user => {
+                console.log(`   - ${user.username}: *** (key: ${user.key.substring(0, 10)}...)`);
+            });
+        });
+    </script>
+</body>
+</html>
